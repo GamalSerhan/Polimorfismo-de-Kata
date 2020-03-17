@@ -22,6 +22,7 @@ public class Parrot {
             	EuropeanSpeedCalculator europeanSpeed = new EuropeanSpeedCalculator();
                 return europeanSpeed.getBaseSpeed();
             case AFRICAN:
+            	AfricanSpeedCalculator africanSpeed = new AfricanSpeedCalculator();
                 return getSpeedAfrican();
             case NORWEGIAN_BLUE:
                 return (isNailed) ? 0 : getBaseSpeed(voltage);
