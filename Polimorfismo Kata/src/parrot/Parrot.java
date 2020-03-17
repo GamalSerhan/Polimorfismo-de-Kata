@@ -15,36 +15,22 @@ public class Parrot {
         this.isNailed = isNailed;
     }
 
-    public double getSpeed() {
+    public double getSpeed() 
+    {
+    	ParrotSpeed parrotSpeed = null;
         switch(type) 
         {
             case EUROPEAN:
-            	EuropeanSpeedCalculator europeanSpeed = new EuropeanSpeedCalculator();
-                return europeanSpeed.getBaseSpeed();
+            	parrotSpeed = new EuropeanSpeedCalculator();
+            	break;
             case AFRICAN:
-            	AfricanSpeedCalculator africanSpeed = new AfricanSpeedCalculator();
-                return getSpeedAfrican();
+            	parrotSpeed = new AfricanSpeedCalculator();
+            	break;
             case NORWEGIAN_BLUE:
-                return (isNailed) ? 0 : getBaseSpeed(voltage);
+                parrotSpeed = new NorwegianBlueSpeed();
+                break;
         }
         throw new RuntimeException("Should be unreachable");
     }
-
-	private double getSpeedAfrican() {
-		return Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts);
-	}
-
-    private double getBaseSpeed(double voltage) {
-        return Math.min(24.0, voltage*getBaseSpeed());
-    }
-
-    private double getLoadFactor() {
-        return 9.0;
-    }
-
-    private double getBaseSpeed() {
-        return 12.0;
-    }
-
 
 }
